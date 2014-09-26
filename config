@@ -166,6 +166,22 @@ bar {
 
 # Tweaks
 
+# execute lock, logout, suspend, hibernate and reboot commands
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id ~/.i3/i3exit lock, mode "default"
+    bindsym e exec --no-startup-id ~/.i3/i3exit logout, mode "default"
+    bindsym s exec --no-startup-id ~/.i3/i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id ~/.i3/i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id ~/.i3/i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id ~/.i3/i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
+
 # cover both new and old ubuntu path references for this binary
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1 &
@@ -185,6 +201,8 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id blueman-applet
 exec --no-startup-id udisks-glue
 exec --no-startup-id export $(gnome-keyring-daemon)
+
+exec --no-startup-id xset dpms 600
 
 # assign programs to workspaces
 assign [class="Firefox"] 9
