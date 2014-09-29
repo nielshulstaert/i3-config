@@ -216,7 +216,8 @@ assign [class="NetBeans"] 6
 for_window [class="NetBeans"] layout stacking
 
 for_window [title="Software Updater"] floating enable
-for_window [title="Ubuntu Software Center"] floating enable
+for_window [title="File Operations"] floating enable
+for_window [title="Calculator"] floating enable
 
 # set netbeans load screen floating
 for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] floating enable
