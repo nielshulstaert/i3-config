@@ -195,12 +195,28 @@ bindsym $mod+Shift+minus move scratchpad
 # show the first scratchpad window
 bindsym $mod+minus scratchpad show
 
+# custom key bindings
+bindsym $mod+u exec unity-control-center
+bindsym $mod+c exec chromium-browser
+
+# Audio keys
+bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master '5%+'"
+bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master '5%-'"
+bindsym XF86AudioMute exec "amixer -D pulse set Master toggle"
+
+# Brightness keys
+bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
+
 # programs executed at startup
-exec --no-startup-id /usr/bin/gnome-settings-daemon
+#exec --no-startup-id /usr/bin/gnome-settings-daemon
+exec --no-startup-id unity-settings-daemon
 exec --no-startup-id nm-applet
 #exec --no-startup-id blueman-applet
 exec --no-startup-id udisks-glue
 exec --no-startup-id export $(gnome-keyring-daemon)
+exec killall -q notify-osd
+exec --no-startup-id dunst
 
 # use autolock for screen locking
 exec --no-startup-id xautolock -time 10 -locker "i3lock -i /home/niels/.i3/Ubuntu-Tropic.png -t"
@@ -229,4 +245,4 @@ client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
 client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
 
 # background color
-exec --no-startup-id xsetroot -solid "#333333"
+# exec --no-startup-id xsetroot -solid "#333333"
