@@ -35,8 +35,9 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="/usr/bin/dmenu -i -nb '#282b57' -nf '#eeeeff' -sb '#555a9e' -fn '-misc-fixed-medium-r-normal-*-15-140-75-75-c-90-iso10646-1' -p 'programs >> '"
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="/usr/bin/dmenu.xft -i -nb '#282b57' -nf '#eeeeff' -sb '#555a9e' -fn 'Inconsolata 12' -p 'programs >> '"
+# start i3-dmenu-desktop with custom colors and font
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="/usr/bin/dmenu.xft -i -nb '#282b57' -nf '#eeeeff' -sb '#555a9e' -fn 'Inconsolata 12' -p 'programs >> '"
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="/usr/bin/dmenu.xft -i -fn 'Inconsolata 12' -p 'programs >> '"
 
 # change focus
 bindsym $mod+j focus left
@@ -155,12 +156,14 @@ bar {
 	position top
 	status_command i3status
         colors {
-            # solarized
-            background #073642
-            statusline #eee8d5
-            focused_workspace #cb4b16 #cb4b16 #eee8d5
-            active_workspace #cb4b16 #cb4b16 #eee8d5
-            inactive_workspace #b58900 #b58900 #eee8d5
+            #background #000000
+            statusline #11B824
+            #separator #666666
+
+            #focused_workspace  #4c7899 #285577 #ffffff
+            #active_workspace   #333333 #5f676a #ffffff
+            #inactive_workspace #333333 #222222 #888888
+            #urgent_workspace   #2f343a #900000 #ffffff
         }
 }
 
@@ -195,9 +198,14 @@ bindsym $mod+Shift+minus move scratchpad
 # show the first scratchpad window
 bindsym $mod+minus scratchpad show
 
+# move the workspace to the left output
+bindsym $mod+Shift+m move workspace to output left
+
 # custom key bindings
 bindsym $mod+u exec unity-control-center
 bindsym $mod+c exec chromium-browser
+bindsym $mod+n exec nautilus
+bindsym $mod+m exec thunderbird
 
 # Audio keys
 bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master '5%+'"
@@ -219,8 +227,7 @@ exec killall -q notify-osd
 exec --no-startup-id dunst
 
 # use autolock for screen locking
-exec --no-startup-id xautolock -time 10 -locker "i3lock -i /home/niels/.i3/Ubuntu-Tropic.png -t"
-#exec --no-startup-id xset dpms 60
+exec --no-startup-id xautolock -time 10 -locker "i3lock -i /home/niels/.i3/Ubuntu-Tropic.png -t" -corners 0-00
 
 # assign programs to workspaces
 assign [class="Firefox"] 9
@@ -230,6 +237,8 @@ for_window [class="Thunderbird"] layout stacking
 assign [class="Skype"] 5
 assign [class="NetBeans"] 6
 for_window [class="NetBeans"] layout stacking
+assign [class="jetbrains-idea"] 6
+for_window [class="jetbrains-idea"] layout stacking
 
 for_window [title="Software Updater"] floating enable
 for_window [title="File Operations"] floating enable
@@ -238,11 +247,3 @@ for_window [title="Calculator"] floating enable
 # set netbeans load screen floating
 for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] floating enable
 for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] border none
-
-# class                 border  backgr. text    indicator
-client.focused          #859900 #859900 #fdf6e3 #2e9ef4
-client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
-client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
-
-# background color
-# exec --no-startup-id xsetroot -solid "#333333"

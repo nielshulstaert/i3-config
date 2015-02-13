@@ -1,6 +1,6 @@
 #!/bin/sh
 lock() {
-    i3lock -n -ti /home/jack/Pictures/wallpaper.png
+    i3lock -n -ti /home/niels/.i3/Ubuntu-Tropic.png
 }
 
 case "$1" in
