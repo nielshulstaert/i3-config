@@ -227,6 +227,8 @@ exec --no-startup-id udisks-glue
 exec --no-startup-id export $(gnome-keyring-daemon)
 exec killall -q notify-osd
 exec --no-startup-id dunst
+exec --no-startup-id xsetroot -solid "#77216F"
+exec --no-startup-id xset dpms 900
 
 # use autolock for screen locking
 exec --no-startup-id xautolock -time 10 -locker "i3lock -c dd4814" -corners 0-00
@@ -249,5 +251,3 @@ for_window [title="Calculator"] floating enable
 # set netbeans load screen floating
 for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] floating enable
 for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] border none
-
-exec --no-startup-id xsetroot -solid "#77216F"
