@@ -1,0 +1,13 @@
+#!/bin/bash
+#------------------------------------------------------------------------
+
+# If the lan interface exists but no connection is active, "down" shall be displayed.
+if [[ "$(ip link | grep ${INTERFACE})" == *"DOWN"* ]]; then
+    echo "down"
+    exit
+fi
+
+#------------------------------------------------------------------------
+IP=$(ip address show dev ${INTERFACE} scope global | awk '/inet / {split($2,var,"/"); print var[1]}')
+echo "$IP"
+
